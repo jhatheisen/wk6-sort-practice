@@ -3,48 +3,40 @@ function ageSort(users) {
 }
 
 function oddEvenSort(arr) {
-  return arr.sort((a, b) => {
-    return (!(a % 2) - !(b % 2)) || (a - b)                   
-  });
+  return arr.sort((a, b) => (!(a % 2) - !(b % 2)) || (a - b));
 }
 
 function validAnagrams(s, t) {
-  let arr = [...s.split(""), ...t.split("")].sort()
-  for (let i = 0; i < arr.length; i += 2) {
-    if (arr[i] !== arr[i + 1]) return false;
-  }
-  return true;
+  // sort each string
+  return s.split('').sort().join('') === t.split('').sort().join('');
+  // O(n log n) time comp
+  // pairs in array
+  // let arr = [...s.split(""), ...t.split("")].sort()
+  // for (let i = 0; i < arr.length; i += 2) {
+  //   if (arr[i] !== arr[i + 1]) return false;
+  // }
+  // return true;
 }
 
 function reverseBaseSort(arr) {
-  return arr.sort((a, b) => {
-    return (b.toString().length - a.toString().length) || (a - b)
-  })
+  return arr.sort((a, b) => (b.toString().length - a.toString().length) || (a - b));
 }
 
 function frequencySort(arr) {
-  // arr.sort()
-  // let tracker = {};
-  // for (let el of arr) {
-  //   if (el in tracker) {
-  //     tracker[el]++;
-  //   } else {
-  //     tracker[el] = 1;
-  //   }
-  // }
-  // let newArr = Object.entries(tracker)
-  // console.log(newArr)
-  // newArr.sort((a, b) => {
-  //   return a[1] - b[1] || (Number(b[0]) - Number(a[0]))
-  // })
-  // let res = [];
-  // for (let num of newArr) {
-  //   for (let i = 0; i < num[1]; i++) {
-  //     res.push(Number(num[0]))
-  //   }
-  // }
-  // return res;
+  let tracker = {};
+  for (let el of arr) {
+    if (el in tracker) {
+      tracker[el]++;
+    } else {
+      tracker[el] = 1;
+    }
+  }
+  let newArr = Object.entries(tracker)
+  // sort arr, by checking how many occurances for that key
+  // use pojo to remember
+  return arr.sort((a, b) => tracker[a] - tracker[b] || (b - a));
 }
+
 
 module.exports = [
   oddEvenSort,
