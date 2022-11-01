@@ -1,9 +1,9 @@
 function ageSort(users) {
-  // Your code here
+  return users.sort((user1,user2) => user1.age - user2.age);
 }
 
 function oddEvenSort(arr) {
-  // Your code here
+  return arr.sort(() =>);
 }
 
 function validAnagrams(s, t) {
